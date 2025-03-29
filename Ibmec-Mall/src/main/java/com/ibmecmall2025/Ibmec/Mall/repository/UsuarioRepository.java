@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ibmecmall2025.Ibmec.Mall.model.Usuario;
 
 @Repository
-public interface UserRepository extends JpaRepository<Usuario, Integer>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     
 }
