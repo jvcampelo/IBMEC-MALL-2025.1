@@ -35,17 +35,18 @@ public class EnderecoController {
         if (optionalUsuario.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        //Cria o endereco  na base
-        enderecoRepository.save(endereco);
-
         //Associa o endereco ao usuario
         Usuario usuario = optionalUsuario.get();
+        endereco.setUsuario(usuario);
+        
+        //Cria o endereco na base
+        enderecoRepository.save(endereco);
 
+        //Adiciona o endereço à lista de endereços do usuário
         usuario.getEnderecos().add(endereco);
         usuarioRepository.save(usuario);
 
         return new ResponseEntity<>(endereco, HttpStatus.CREATED);
-
     }
 
 }

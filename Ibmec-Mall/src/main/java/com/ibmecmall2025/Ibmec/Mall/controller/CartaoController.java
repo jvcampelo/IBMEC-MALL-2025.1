@@ -37,17 +37,18 @@ public class CartaoController {
         if (optionalUsuario.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+        //Associa o cartao de credito ao usuario
+        Usuario usuario = optionalUsuario.get();
+        cartao.setUsuario(usuario);
+        
         //Cria o cartao de credito na base
         cartaoRepository.save(cartao);
 
-        //Associa o cartao de credito ao usuario
-        Usuario usuario = optionalUsuario.get();
-
+        //Adiciona o cartão à lista de cartões do usuário
         usuario.getCartoes().add(cartao);
         usuarioRepository.save(usuario);
 
         return new ResponseEntity<>(cartao, HttpStatus.CREATED);
-
     }
 
     @PostMapping("/authorize")

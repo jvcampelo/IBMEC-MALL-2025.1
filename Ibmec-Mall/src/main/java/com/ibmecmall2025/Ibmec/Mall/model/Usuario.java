@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Data
 @Entity(name = "usuario")
 public class Usuario {
-    public Usuario(){
+
+    public Usuario() {
         this.cartoes = new ArrayList<>();
         this.enderecos = new ArrayList<>();
     }
@@ -35,12 +35,9 @@ public class Usuario {
     @Column
     private String telefone;
 
-    @OneToMany
-    @JoinColumn(referencedColumnName = "id", name = "id_usuario")
-        private List<Cartao> cartoes;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cartao> cartoes;
 
-    @OneToMany
-    @JoinColumn(referencedColumnName = "id", name = "id_usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos;
-
 }
