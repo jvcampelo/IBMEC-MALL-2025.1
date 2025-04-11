@@ -53,7 +53,7 @@ public class CosmosConfiguration extends AbstractCosmosConfiguration {
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
             
             return new CosmosClientBuilder()
-                .endpoint(properties.getUri())
+                .endpoint(properties.getEndpoint())
                 .key(properties.getKey())
                 .directMode(DirectConnectionConfig.getDefaultConfig());
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
